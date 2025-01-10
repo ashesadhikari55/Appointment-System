@@ -1,0 +1,17 @@
+{
+    "name": "vendor/appointment",
+    "description": "This is the project",
+    "autoload": {
+        "psr-4": {
+            "Vendor\\Appointment\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Ashesh Adhikari"
+        }
+    ],
+    "require": {
+        "twbs/bootstrap": "5.3.3"
+    }
+}
