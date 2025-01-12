@@ -20,7 +20,7 @@ if (mysqli_num_rows($result_post) > 0) {
                 <td><?php echo $row["appointment-starttime"]; ?></td>
                 <td><?php echo $row["appointment-endtime"]; ?></td>
                 <td><?php echo $row["appointment-addedon"]; ?></td>
-                <td><a href="officer.php?appointment_edit=1&appointment_id=<?php echo $row["appointment-id"]; ?>" class="btn btn-success" name="appointment_edit_button">EDIT</td>
+                <td><a href="appointment.php?appointment_edit=1&appointment_id=<?php echo $row["appointment-id"]; ?>" class="btn btn-success" name="appointment_edit_button">EDIT</td>
             </tr>
         </tbody>
 <?php

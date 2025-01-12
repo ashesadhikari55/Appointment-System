@@ -2,17 +2,20 @@
 
 <?php
 
-if (isset($_GET["officer_edit"])) {
-    $officer_edit = $_GET["officer_edit"];
-    $officer_id = $_GET["officer_id"];
+if (isset($_GET["appointment_edit"])) {
+    $appointment_edit = $_GET["appointment_edit"];
+    $appointment_id = $_GET["appointment_id"];
 
-
-    $sql_officer = "select `officer-id`, `officer-name`,`post-id`,`post-name`,`officer-status`,`officer-workstarttime`,`officer-workendtime` from `table-officer` join `table-post` on `table-post`.`post-id` = `table-officer`.`officer-postid` where `officer-id`= '{$officer_id}'";
+    $sql_officer = "select `officer-id`, `officer-name`,`visitor-id`,`visitor-name`,`appointment-status`,`appointment-date`,`appointment-starttime`,`appointment-endtime`,`appointment-addedon` from `table-appointment` join `table-officer` on `table-officer`.`officer-id` = `table-appointment`.`appointment-officerid` join `table-visitor` on `table-visitor`.`visitor-id` = `table-appointment`.`appointment-visitorid` where `appointment-id`= '{$appointment_id}'";
     $result_officer = mysqli_query($con, $sql_officer);
 
 
-    $sql_dropdown = "SELECT `post-id`, `post-name` FROM `table-post`";
+    $sql_dropdown = "SELECT `officer-id`, `officer-name` FROM `table-officer`";
     $result_dropdown = mysqli_query($con, $sql_dropdown);
+
+    $sql_dropdownX = "SELECT `visitor-id`, `visitor-name` FROM `table-visitor`";
+    $result_dropdownX = mysqli_query($con, $sql_dropdownX);
+
 
     if (mysqli_num_rows($result_officer) > 0) {
         while ($row = mysqli_fetch_array($result_officer)) {
@@ -27,13 +30,24 @@ if (isset($_GET["officer_edit"])) {
                     <input type="text" class="form-control mb-2" id="officer-name" name="officer_name" placeholder="Enter Officer Name" value="<?php echo $row["officer-name"] ?>">
                 </div>
 
-                <label for="post-name">Choose Post Name:</label>
-                <select name="post_id" id="post-id">
+                <label for="officer-name">Choose Post Name:</label>
+                <select name="officer_id" id="officer-id">
                     <?php
                     if (mysqli_num_rows($result_dropdown) > 0) {
 
                         while ($rowX = mysqli_fetch_array($result_dropdown)) { ?>
-                            <option value="<?php echo $rowX["post-id"] ?>" <?php echo ($row["post-id"] == $rowX["post-id"]) ? 'selected' : ''; ?>><?php echo $rowX['post-name'] ?></option>  
+                            <option value="<?php echo $rowX["officer-id"] ?>" <?php echo ($row["officer-id"] == $rowX["officer-id"]) ? 'selected' : ''; ?>><?php echo $rowX['officer-name'] ?></option>  
+                       <?php 
+                        }
+                        ?>
+                </select>
+
+                <select name="visitor_id" id="visitor-id">
+                    <?php
+                    if (mysqli_num_rows($result_dropdownX) > 0) {
+
+                        while ($rowX = mysqli_fetch_array($result_dropdownX)) { ?>
+                            <option value="<?php echo $rowX["visitor-id"] ?>" <?php echo ($row["visitor-id"] == $rowX["visitor-id"]) ? 'selected' : ''; ?>><?php echo $rowX['visitor-name'] ?></option>  
                        <?php 
                         }
                         ?>
