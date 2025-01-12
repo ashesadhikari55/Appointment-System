@@ -47,7 +47,7 @@ if (isset($_GET["appointment_edit"])) {
                     if (mysqli_num_rows($result_dropdownX) > 0) {
 
                         while ($rowX = mysqli_fetch_array($result_dropdownX)) { ?>
-                            <option value="<?php echo $rowX["visitor-id"] ?>" <?php echo ($row["visitor-id"] == $rowX["visitor-id"]) ? 'selected' : ''; ?>><?php echo $rowX['visitor-name'] ?></option>  
+                            <option value="<?php echo $rowX["visitor-id"] ?>" <?php echo ($row["visitor-id"] == $rowX["visitor-id"]) ? 'selected' : ''; ?>><?php echo $rowX['post-name'] ?></option>  
                        <?php 
                         }
                         ?>
