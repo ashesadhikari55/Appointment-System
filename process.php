@@ -185,7 +185,7 @@ if (isset($_POST['appointment-insert_btn'])) {
   $officerid = $_POST['officer_id'];
   $visitorid = $_POST['visitor_id'];
   $name = $_POST['appointment_name'];
-  $status = $_POST['appointment_status'];
+   $status = $_POST['appointment_status'];
   $appointmentdate = $_POST['appointment_date'];
   $starttime = $_POST['appointment_starttime'];
   $endtime = $_POST['appointment_endtime'];
@@ -204,3 +204,26 @@ VALUES ('$officerid', '$visitorid', '$name', '$status', '$appointmentdate', '$st
   }
 }
 
+// for workdays update button
+if (isset($_POST['appointment-update_btn'])) {
+  $id = $_GET["appointment_id"];
+  $officerid = $_POST['officer_id'];
+  $visitorid = $_POST['visitor_id'];
+  $name = $_POST['appointment_name'];
+  $status = $_POST['appointment_status'];
+  $appointmentdate = $_POST['appointment_date'];
+  $starttime = $_POST['appointment_starttime'];
+  $endtime = $_POST['appointment_endtime'];
+  $addedon = date('Y-m-d\TH:i:s');  
+  
+ $sql = "UPDATE `table-appointment`
+  SET `appointment-officerid` = '$officerid', `appointment-visitorid` = '$visitorid',`appointment-name` = '$name', `appointment-status`= '$status', `appointment-date` = '$appointmentdate', `appointment-starttime` = '$starttime', `appointment-endtime` = '$endtime', `appointment-addedon`= '$addedon'  WHERE `appointment-id` = '$id';";
+
+  $result = mysqli_query($con, $sql);
+
+  if ($result) {
+    header("location:appointment.php?updated=1");
+  } else {
+    header("location:appointment.php?updated=0");
+  }
+}

@@ -45,7 +45,6 @@
 
                 ?>
 
-
                     <form method="post">
 
                         <label for="officer-id">Choose Officer Name:</label>
@@ -74,6 +73,7 @@
                             <label>Enter Appointment Name: </label>
                             <input type="text" class="form-control mb-2" id="appointment-name" name="appointment_name" placeholder="Enter Appointment Name">
                         </div>
+
 
                         <label for="appointment-status">Choose Officer Status:</label>
                         <select name="appointment_status" id="appointment-status" class="mb-2">

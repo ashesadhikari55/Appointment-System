@@ -6,7 +6,7 @@ if (isset($_GET["appointment_edit"])) {
     $appointment_edit = $_GET["appointment_edit"];
     $appointment_id = $_GET["appointment_id"];
 
-    $sql_officer = "select `officer-id`, `officer-name`,`visitor-id`,`visitor-name`,`appointment-status`,`appointment-date`,`appointment-starttime`,`appointment-endtime`,`appointment-addedon` from `table-appointment` join `table-officer` on `table-officer`.`officer-id` = `table-appointment`.`appointment-officerid` join `table-visitor` on `table-visitor`.`visitor-id` = `table-appointment`.`appointment-visitorid` where `appointment-id`= '{$appointment_id}'";
+    $sql_officer = "select `officer-id`, `officer-name`,`visitor-id`,`appointment-name`,`visitor-name`,`appointment-status`,`appointment-date`,`appointment-starttime`,`appointment-endtime`,`appointment-addedon` from `table-appointment` join `table-officer` on `table-officer`.`officer-id` = `table-appointment`.`appointment-officerid` join `table-visitor` on `table-visitor`.`visitor-id` = `table-appointment`.`appointment-visitorid` where `appointment-id`= '{$appointment_id}'";
     $result_officer = mysqli_query($con, $sql_officer);
 
 
@@ -24,61 +24,72 @@ if (isset($_GET["appointment_edit"])) {
 
             <form method="post">
 
-            <input type="hidden" value="<?php         ?>">
-                <div class="form-group">
-                    <label>Enter Officer Name: </label>
-                    <input type="text" class="form-control mb-2" id="officer-name" name="officer_name" placeholder="Enter Officer Name" value="<?php echo $row["officer-name"] ?>">
-                </div>
-
-                <label for="officer-name">Choose Post Name:</label>
+               
+                <label for="officer-name" class="mb-3">Choose Officer Name:</label>
                 <select name="officer_id" id="officer-id">
                     <?php
                     if (mysqli_num_rows($result_dropdown) > 0) {
 
                         while ($rowX = mysqli_fetch_array($result_dropdown)) { ?>
-                            <option value="<?php echo $rowX["officer-id"] ?>" <?php echo ($row["officer-id"] == $rowX["officer-id"]) ? 'selected' : ''; ?>><?php echo $rowX['officer-name'] ?></option>  
-                       <?php 
+                            <option value="<?php echo $rowX["officer-id"] ?>" <?php echo ($row["officer-id"] == $rowX["officer-id"]) ? 'selected' : ''; ?>><?php echo $rowX['officer-name'] ?></option>
+                        <?php
                         }
                         ?>
                 </select>
 
+                <br>
+                <label for="officer-status" class="mb-3">Choose Visitor Name:</label>
                 <select name="visitor_id" id="visitor-id">
                     <?php
-                    if (mysqli_num_rows($result_dropdownX) > 0) {
+                        if (mysqli_num_rows($result_dropdownX) > 0) {
 
-                        while ($rowX = mysqli_fetch_array($result_dropdownX)) { ?>
-                            <option value="<?php echo $rowX["visitor-id"] ?>" <?php echo ($row["visitor-id"] == $rowX["visitor-id"]) ? 'selected' : ''; ?>><?php echo $rowX['post-name'] ?></option>  
-                       <?php 
-                        }
+                            while ($rowX = mysqli_fetch_array($result_dropdownX)) { ?>
+                            <option value="<?php echo $rowX["visitor-id"] ?>" <?php echo ($row["visitor-id"] == $rowX["visitor-id"]) ? 'selected' : ''; ?>><?php echo $rowX['visitor-name'] ?></option>
+                        <?php
+                            }
                         ?>
 
                 </select>
 
-                <label for="officer-status">Choose Officer Status:</label>
-                <select name="officer_status" id="officer-status">
-                    <option value = "1" <?php echo ($row["officer-status"] == 1) ? 'selected' : ''; ?>>Activate</option>
-                    <option value = "0" <?php echo ($row["officer-status"] == 0) ? 'selected' : ''; ?>>Deactivate</option>
+                <div class="form-group">
+                    <label>Enter Appointment Name: </label>
+                    <input type="text" class="form-control mb-2" id="appointment-name" name="appointment_name" placeholder="Enter Appointment Name" value="<?php echo $row["appointment-name"] ?>">
+                </div>
+
+
+                <br>
+
+                <label for="appointment-status">Choose Officer Status:</label>
+                <select name="appointment_status" id="appointment-status">
+                    <option value="1" <?php echo ($row["appointment-status"] == 1) ? 'selected' : ''; ?>>Activate</option>
+                    <option value="0" <?php echo ($row["appointment-status"] == 0) ? 'selected' : ''; ?>>Deactivate</option>
                 </select>
 
                 <div class="form-group">
-                    <label>Enter Work Start Time: </label>
-                    <input type="datetime-local" class="form-control mb-2" id="officer-workstarttime" name="officer_workstarttime" placeholder="Enter Visitor Work Start Time" value="<?php echo $row["officer-workstarttime"] ?>">
+                    <label>Appointment Date: </label>
+                    <input type="datetime-local" class="form-control mb-2" id="appointment-date" name="appointment_date" placeholder="Enter Appointment Date: " value="<?php echo $row["appointment-date"] ?>" >
                 </div>
-
 
                 <div class="form-group">
-                    <label>Enter Work End Time: </label>
-                    <input type="datetime-local" class="form-control mb-2" id="officer-workendtime" name="officer_workendtime" placeholder="Enter Visitor Work End Time" value="<?php echo $row["officer-workendtime"] ?>">
+                    <label>Appointment Start Time: </label>
+                    <input type="datetime-local" class="form-control mb-2" id="appointment-starttime" name="appointment_starttime" placeholder="Enter Appointment Start Time: " value="<?php echo $row["appointment-starttime"] ?>" >
                 </div>
 
+                <div class="form-group">
+                    <label>Appointment End Time: </label>
+                    <input type="datetime-local" class="form-control mb-2" id="appointment-endtime" name="appointment_endtime" placeholder="Enter Appointment End Time: " value="<?php echo $row["appointment-endtime"] ?>" >
+                </div>
+
+
                 <br>
                 <br>
 
-                <button type="submit" name="officer-update_btn" class="btn btn-primary">Submit</button>
+                <button type="submit" name="appointment-update_btn" class="btn btn-primary">Submit</button>
             </form>
+
 <?php
+                        }
                     }
                 }
             }
         }
-?>
