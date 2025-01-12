@@ -3,7 +3,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$database = "db-appointment-system";
+$database = "db-appointment";
 
 $con = new mysqli($servername,$username,$password,$database);
 

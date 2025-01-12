@@ -137,3 +137,70 @@ if ($result) {
 
 }
  
+
+//----------------------------------------------------------------------------//
+//----------------- Workdays  --------------------------//
+//------------------------------------------------------------------------//
+
+// for workdays insert button
+if (isset($_POST['workdays-insert_btn'])) {
+  $id = $_POST['officer_id'];
+  $dayofweek = $_POST['workdays_dayofweek'];
+  $sql = "insert into `table-workdays` (`workdays-officerid`,`workdays-dayofweek`) values('$id', '$dayofweek')";
+  $result = mysqli_query($con, $sql);
+
+
+  if ($result) {
+    header("location:workdays.php?inserted=1");
+  } else {
+    header("location:workdays.php?inserted=0");
+  }
+}
+
+// for workdays update button
+if (isset($_POST['workdays-update_btn']))
+{
+ $id = $_GET["workdays_id"];
+ $officerid = $_POST['officer_id'];
+ $day = $_POST['workdays_dayofweek'];
+ 
+ $sql = "UPDATE `table-workdays` SET `workdays-officerid` = '$officerid', `workdays-dayofweek` = '$day' WHERE `workdays-id` = '$id'";
+$result = mysqli_query($con, $sql);
+
+if ($result) {
+ header("location:workdays.php?updated=1");
+} else {
+ header("location:workdays.php?updated=0");
+}
+
+}
+
+//----------------------------------------------------------------------------//
+//----------------- Appointment  --------------------------//
+//------------------------------------------------------------------------//
+
+
+// for workdays insert button
+if (isset($_POST['appointment-insert_btn'])) {
+  $officerid = $_POST['officer_id'];
+  $visitorid = $_POST['visitor_id'];
+  $name = $_POST['appointment_name'];
+  $status = $_POST['appointment_status'];
+  $appointmentdate = $_POST['appointment_date'];
+  $starttime = $_POST['appointment_starttime'];
+  $endtime = $_POST['appointment_endtime'];
+  $addedon = date('Y-m-d\TH:i:s');  
+  
+  $dayofweek = $_POST['workdays_dayofweek'];
+
+  $sql = "INSERT INTO `table-appointment` (`appointment-officerid`, `appointment-visitorid`, `appointment-name`, `appointment-status`, `appointment-date`, `appointment-starttime`, `appointment-endtime`, `appointment-addedon`) 
+VALUES ('$officerid', '$visitorid', '$name', '$status', '$appointmentdate', '$starttime', '$endtime', '$addedon');";
+  $result = mysqli_query($con, $sql);
+
+  if ($result) {
+    header("location:appointment.php?inserted=1");
+  } else {
+    header("location:appointment.php?inserted=0");
+  }
+}
+
