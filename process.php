@@ -180,7 +180,7 @@ if ($result) {
 //------------------------------------------------------------------------//
 
 
-// for workdays insert button
+// for appointment insert button
 if (isset($_POST['appointment-insert_btn'])) {
   $officerid = $_POST['officer_id'];
   $visitorid = $_POST['visitor_id'];
@@ -204,7 +204,7 @@ VALUES ('$officerid', '$visitorid', '$name', '$status', '$appointmentdate', '$st
   }
 }
 
-// for workdays update button
+// for appointment update button
 if (isset($_POST['appointment-update_btn'])) {
   $id = $_GET["appointment_id"];
   $officerid = $_POST['officer_id'];
