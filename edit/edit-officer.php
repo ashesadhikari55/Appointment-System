@@ -36,6 +36,7 @@ if (isset($_GET["officer_edit"])) {
                             <option value="<?php echo $rowX["post-id"] ?>" <?php echo ($row["post-id"] == $rowX["post-id"]) ? 'selected' : ''; ?>><?php echo $rowX['post-name'] ?></option>  
                        <?php 
                         }
+                    }
                         ?>
 
                 </select>
@@ -66,5 +67,4 @@ if (isset($_GET["officer_edit"])) {
                     }
                 }
             }
-        }
 ?>

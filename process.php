@@ -141,7 +141,7 @@ if (isset($_POST['officer-update_btn'])) {
   } else {
     header("location:officer.php?updated=0");
   }
-    mysqli_close($con);
+  mysqli_close($con);
 }
 
 
@@ -235,6 +235,58 @@ if (isset($_POST['appointment-update_btn'])) {
     header("location:appointment.php?updated=1");
   } else {
     header("location:appointment.php?updated=0");
+  }
+
+  mysqli_close($con);
+}
+
+
+//----------------------------------------------------------------------------//
+//----------------- Activity  --------------------------//
+//------------------------------------------------------------------------//
+
+// for activity insert button
+if (isset($_POST['activity-insert_btn'])) {
+  $type = $_POST['activity_type'];
+  $officerid = $_POST['officer_id'];
+  $startdate = $_POST['activity_startdate'];
+  $starttime = $_POST['activity_starttime'];
+  $enddate = $_POST['activity_enddate'];
+  $endtime = $_POST['activity_endtime'];
+  $status = $_POST['activity_status'];
+
+  $sql = "INSERT INTO `table-activity` (`activity-type`, `activity-officerid`, `activity-startdate`, `activity-starttime`, `activity-enddate`, `activity-endtime`,`activity-status`) 
+VALUES ('$type', '$officerid', '$startdate', '$starttime', '$enddate', '$endtime', '$status');";
+  $result = mysqli_query($con, $sql);
+
+  if ($result) {
+    header("location:activity.php?inserted=1");
+  } else {
+    header("location:activity.php?inserted=0");
+  }
+  mysqli_close($con);
+}
+
+// for activity update button
+if (isset($_POST['activity-update_btn'])) {
+  $id = $_GET['activity_id'];
+  $type = $_POST['activity_type'];
+  $officerid = $_POST['officer_id'];
+  $startdate = $_POST['activity_startdate'];
+  $starttime = $_POST['activity_starttime'];
+  $enddate = $_POST['activity_enddate'];
+  $endtime = $_POST['activity_endtime'];
+  $status = $_POST['activity_status'];
+
+  $sql = "UPDATE `table-activity`
+  SET `activity-type` = '$type', `activity-officerid` = '$officerid',`activity-startdate` = '$startdate', `activity-starttime`= '$starttime', `activity-enddate` = '$enddate', `activity-status` = '$status' WHERE `activity-id` = '$id';";
+
+  $result = mysqli_query($con, $sql);
+
+  if ($result) {
+    header("location:activity.php?updated=1");
+  } else {
+    header("location:activity.php?updated=0");
   }
 
   mysqli_close($con);

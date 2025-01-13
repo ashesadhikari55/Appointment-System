@@ -31,9 +31,9 @@
             <div class="col">
 
                 <?php
-                if (isset($_GET["post_edit"])) {
+                if (isset($_GET["activity_edit"])) {
 
-                    include_once 'edit/edit-post.php';
+                    include_once 'edit/edit-activity.php';
                 } else {
 
                     $sql_dropdown = "SELECT `officer-id`, `officer-name` FROM `table-officer`";
@@ -83,13 +83,9 @@
                             <input type="time" class="form-control mb-2" id="activity-endtime" name="activity_endtime" placeholder="Enter Activity End Time : ">
                         </div>
 
-                        <div class="form-group">
-                            <label>Enter Post Name: </label>
-                            <input type="text" class="form-control mb-2" id="post-name" name="post_name" placeholder="Enter Post Name">
-                        </div>
                         <label for="activity-status">Choose Activity Status:</label>
                         <select name="activity_status" id="activity-status">
-                            <option value="1">Activate</option>
+                            <option value="1" >Activate</option>
                             <option value="0">Cancelled</option>
                         </select>
 
