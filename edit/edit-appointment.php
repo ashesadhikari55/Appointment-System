@@ -67,17 +67,17 @@ if (isset($_GET["appointment_edit"])) {
 
                 <div class="form-group">
                     <label>Appointment Date: </label>
-                    <input type="datetime-local" class="form-control mb-2" id="appointment-date" name="appointment_date" placeholder="Enter Appointment Date: " value="<?php echo $row["appointment-date"] ?>" >
+                    <input type="date" class="form-control mb-2" id="appointment-date" name="appointment_date" placeholder="Enter Appointment Date: " value="<?php echo $row["appointment-date"] ?>" >
                 </div>
 
                 <div class="form-group">
                     <label>Appointment Start Time: </label>
-                    <input type="datetime-local" class="form-control mb-2" id="appointment-starttime" name="appointment_starttime" placeholder="Enter Appointment Start Time: " value="<?php echo $row["appointment-starttime"] ?>" >
+                    <input type="time" class="form-control mb-2" id="appointment-starttime" name="appointment_starttime" placeholder="Enter Appointment Start Time: " value="<?php echo $row["appointment-starttime"] ?>" >
                 </div>
 
                 <div class="form-group">
                     <label>Appointment End Time: </label>
-                    <input type="datetime-local" class="form-control mb-2" id="appointment-endtime" name="appointment_endtime" placeholder="Enter Appointment End Time: " value="<?php echo $row["appointment-endtime"] ?>" >
+                    <input type="time" class="form-control mb-2" id="appointment-endtime" name="appointment_endtime" placeholder="Enter Appointment End Time: " value="<?php echo $row["appointment-endtime"] ?>" >
                 </div>
 
 

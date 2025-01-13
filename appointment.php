@@ -83,17 +83,17 @@
 
                         <div class="form-group" class="mb-2">
                             <label>Enter Appointment Date: </label>
-                            <input type="datetime-local" class="form-control mb-2" id="appointment-date" name="appointment_date" placeholder="Enter Appointment Date">
+                            <input type="date" class="form-control mb-2" id="appointment-date" name="appointment_date" placeholder="Enter Appointment Date">
                         </div>
 
                         <div class="form-group" class="mb-2">
                             <label>Enter Start Time: </label>
-                            <input type="datetime-local" class="form-control mb-2" id="appointment-starttime" name="appointment_starttime" placeholder="Enter Appointment Start Time">
+                            <input type="time" class="form-control mb-2" id="appointment-starttime" name="appointment_starttime" placeholder="Enter Appointment Start Time">
                         </div>
 
                         <div class="form-group" class="mb-2">
                             <label>Enter End Time: </label>
-                            <input type="datetime-local" class="form-control mb-2" id="appointment-endtime" name="appointment_endtime" placeholder="Enter Appointment End Time">
+                            <input type="time" class="form-control mb-2" id="appointment-endtime" name="appointment_endtime" placeholder="Enter Appointment End Time">
                         </div>
 
                         <br>

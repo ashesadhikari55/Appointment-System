@@ -8,7 +8,7 @@
 if (isset($_POST['post-insert_btn'])) {
   $name = $_POST['post_name'];
   $status = $_POST['post_status'];
- 
+
   $sql = "insert into `table-post` (`post-name`,`post-status`) values('$name', '$status')";
   $result = mysqli_query($con, $sql);
 
@@ -18,6 +18,7 @@ if (isset($_POST['post-insert_btn'])) {
   } else {
     header("location:post.php?inserted=0");
   }
+  mysqli_close($con);
 }
 
 
@@ -38,6 +39,7 @@ WHERE `post-id` = '$id';";
   } else {
     header("location:post.php?updated=0");
   }
+  mysqli_close($con);
 }
 
 
@@ -63,6 +65,8 @@ if (isset($_POST['visitor-insert_btn'])) {
   } else {
     header("location:visitor.php?inserted=0");
   }
+
+  mysqli_close($con);
 }
 
 
@@ -86,6 +90,8 @@ WHERE `visitor-id` = '$id';";
   } else {
     header("location:visitor.php?updated=0");
   }
+
+  mysqli_close($con);
 }
 
 
@@ -111,12 +117,13 @@ if (isset($_POST['officer-insert_btn'])) {
   } else {
     header("location:officer.php?inserted=0");
   }
+
+  mysqli_close($con);
 }
 
 
 // for officer update button
- if (isset($_POST['officer-update_btn']))
- {
+if (isset($_POST['officer-update_btn'])) {
   $id = $_GET["officer_id"];
   $name = $_POST['officer_name'];
   $post = $_POST['post_id'];
@@ -127,16 +134,16 @@ if (isset($_POST['officer-insert_btn'])) {
   $sql = "UPDATE `table-officer`
   SET `officer-name` = '$name', `officer-postid` = '$post', `officer-status` = '$status', `officer-workstarttime` = '$starttime', `officer-workendtime` = '$endtime' WHERE `officer-id` = '$id';";
 
-$result = mysqli_query($con, $sql);
+  $result = mysqli_query($con, $sql);
 
-if ($result) {
-  header("location:officer.php?updated=1");
-} else {
-  header("location:officer.php?updated=0");
+  if ($result) {
+    header("location:officer.php?updated=1");
+  } else {
+    header("location:officer.php?updated=0");
+  }
+    mysqli_close($con);
 }
 
-}
- 
 
 //----------------------------------------------------------------------------//
 //----------------- Workdays  --------------------------//
@@ -155,24 +162,26 @@ if (isset($_POST['workdays-insert_btn'])) {
   } else {
     header("location:workdays.php?inserted=0");
   }
+
+  mysqli_close($con);
 }
 
 // for workdays update button
-if (isset($_POST['workdays-update_btn']))
-{
- $id = $_GET["workdays_id"];
- $officerid = $_POST['officer_id'];
- $day = $_POST['workdays_dayofweek'];
- 
- $sql = "UPDATE `table-workdays` SET `workdays-officerid` = '$officerid', `workdays-dayofweek` = '$day' WHERE `workdays-id` = '$id'";
-$result = mysqli_query($con, $sql);
+if (isset($_POST['workdays-update_btn'])) {
+  $id = $_GET["workdays_id"];
+  $officerid = $_POST['officer_id'];
+  $day = $_POST['workdays_dayofweek'];
 
-if ($result) {
- header("location:workdays.php?updated=1");
-} else {
- header("location:workdays.php?updated=0");
-}
+  $sql = "UPDATE `table-workdays` SET `workdays-officerid` = '$officerid', `workdays-dayofweek` = '$day' WHERE `workdays-id` = '$id'";
+  $result = mysqli_query($con, $sql);
 
+  if ($result) {
+    header("location:workdays.php?updated=1");
+  } else {
+    header("location:workdays.php?updated=0");
+  }
+
+  mysqli_close($con);
 }
 
 //----------------------------------------------------------------------------//
@@ -185,12 +194,12 @@ if (isset($_POST['appointment-insert_btn'])) {
   $officerid = $_POST['officer_id'];
   $visitorid = $_POST['visitor_id'];
   $name = $_POST['appointment_name'];
-   $status = $_POST['appointment_status'];
+  $status = $_POST['appointment_status'];
   $appointmentdate = $_POST['appointment_date'];
   $starttime = $_POST['appointment_starttime'];
   $endtime = $_POST['appointment_endtime'];
-  $addedon = date('Y-m-d\TH:i:s');  
-  
+  $addedon = date('Y-m-d\TH:i:s');
+
   $dayofweek = $_POST['workdays_dayofweek'];
 
   $sql = "INSERT INTO `table-appointment` (`appointment-officerid`, `appointment-visitorid`, `appointment-name`, `appointment-status`, `appointment-date`, `appointment-starttime`, `appointment-endtime`, `appointment-addedon`) 
@@ -202,6 +211,7 @@ VALUES ('$officerid', '$visitorid', '$name', '$status', '$appointmentdate', '$st
   } else {
     header("location:appointment.php?inserted=0");
   }
+  mysqli_close($con);
 }
 
 // for appointment update button
@@ -214,9 +224,9 @@ if (isset($_POST['appointment-update_btn'])) {
   $appointmentdate = $_POST['appointment_date'];
   $starttime = $_POST['appointment_starttime'];
   $endtime = $_POST['appointment_endtime'];
-  $addedon = date('Y-m-d\TH:i:s');  
-  
- $sql = "UPDATE `table-appointment`
+  $addedon = date('Y-m-d\TH:i:s');
+
+  $sql = "UPDATE `table-appointment`
   SET `appointment-officerid` = '$officerid', `appointment-visitorid` = '$visitorid',`appointment-name` = '$name', `appointment-status`= '$status', `appointment-date` = '$appointmentdate', `appointment-starttime` = '$starttime', `appointment-endtime` = '$endtime', `appointment-addedon`= '$addedon'  WHERE `appointment-id` = '$id';";
 
   $result = mysqli_query($con, $sql);
@@ -226,4 +236,6 @@ if (isset($_POST['appointment-update_btn'])) {
   } else {
     header("location:appointment.php?updated=0");
   }
+
+  mysqli_close($con);
 }
